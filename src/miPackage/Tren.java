@@ -61,7 +61,7 @@ public class Tren {
 			this.setVagonesNecesarios(0);
 			this.setAgresividadTotal(0);
 
-			especies = new LinkedList<Especie>();
+			this.especies = new LinkedList<Especie>();
 
 			for (int i = 0; i < this.getCantidadEspecies(); i++) {
 				String nombre = scan.next();
@@ -69,7 +69,7 @@ public class Tren {
 				int animales = scan.nextInt();
 
 				Especie especie = new Especie(nombre, agresividad, animales);
-				especies.add(especie);
+				this.especies.add(especie);
 			}
 
 			scan.close();
@@ -80,34 +80,34 @@ public class Tren {
 	}
 
 	public void separarAnimalesEnVagones(String path) {
-		
 		try {
 			FileWriter file = new FileWriter(path);
 			BufferedWriter buffer = new BufferedWriter(file);
 			
-			Collections.sort(especies);
-			vagones = new Hashtable<Especie, Integer>();
+			Collections.sort(this.especies);
+			this.vagones = new Hashtable<Especie, Integer>();
 
 			int i = 0, j = 0;
-			while (i < especies.size() - 1 && j < especies.size()) {
+			while (i < this.especies.size() - 1 && j < this.especies.size()) {
 				j = i + 1;
-				while (j < especies.size() && especies.get(i).getAgresividad() - especies.get(j).getAgresividad() < this.agresividadMaxima) {
+				while (j < this.especies.size() && this.especies.get(i).getAgresividad()
+						- this.especies.get(j).getAgresividad() < this.agresividadMaxima) {
 					j++;
 				}
-				
+
 				this.setVagonesNecesarios(this.getVagonesNecesarios() + 1);
 				for (int k = i; k < j; k++) {
 					this.vagones.put(especies.get(k), this.getVagonesNecesarios());
 				}
-				
-				int agresividadVagon = especies.get(j).getAgresividad() - especies.get(i).getAgresividad();
+
+				int agresividadVagon = this.especies.get(j).getAgresividad() - this.especies.get(i).getAgresividad();
 				this.setAgresividadTotal(this.getAgresividadTotal() + agresividadVagon);
 				i = j;
 			}
-			
+
 			buffer.write(this.getVagonesNecesarios() + " " + this.getAgresividadTotal());
 			buffer.close();
-			
+
 		} catch (IOException e) {
 			System.out.println("No se pudo generar generar el archivo de salida");
 		}
