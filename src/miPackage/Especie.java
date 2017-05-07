@@ -9,13 +9,27 @@ public class Especie implements Comparable<Especie> {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public int getAgresividad() {
 		return agresividad;
 	}
+
+	public void setAgresividad(int agresividad) {
+		this.agresividad = agresividad;
+	}
+
 	public int getAnimales() {
 		return animales;
 	}
-	
+
+	public void setAnimales(int animales) {
+		this.animales = animales;
+	}
+
 	public Especie(String nombre, int agresividad, int animales) {
 		this.nombre = nombre;
 		this.agresividad = agresividad;
