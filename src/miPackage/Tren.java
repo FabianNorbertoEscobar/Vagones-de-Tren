@@ -90,8 +90,8 @@ public class Tren {
 			int i = 0, j = 0;
 			while (i < this.especies.size() - 1 && j < this.especies.size()) {
 				j = i + 1;
-				while (j < this.especies.size() && this.especies.get(i).getAgresividad()
-						- this.especies.get(j).getAgresividad() < this.agresividadMaxima) {
+				while (j < this.especies.size() && this.especies.get(j).getAgresividad()
+						- this.especies.get(i).getAgresividad() < this.agresividadMaxima) {
 					j++;
 				}
 
@@ -100,7 +100,7 @@ public class Tren {
 					this.vagones.put(especies.get(k), this.getVagonesNecesarios());
 				}
 
-				int agresividadVagon = this.especies.get(j).getAgresividad() - this.especies.get(i).getAgresividad();
+				int agresividadVagon = this.especies.get(j - 1).getAgresividad() - this.especies.get(i).getAgresividad();
 				this.setAgresividadTotal(this.getAgresividadTotal() + agresividadVagon);
 				i = j;
 			}
